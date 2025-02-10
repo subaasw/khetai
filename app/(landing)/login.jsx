@@ -8,10 +8,21 @@ import {
   StyleSheet,
   SafeAreaView,
 } from "react-native";
+import { farmerLogin } from "@/util/auth";
 
 const Login = ({}) => {
   const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const handleLogin = async () => {
+    // const res = await farmerLogin(phoneNumber);
+    // console.log(res);
+    // if (res.status === 200) {
+    //   router.navigate("/(tabs)");
+    router.navigate("/(tabs)");
+
+    // }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -45,10 +56,7 @@ const Login = ({}) => {
           keyboardType="phone-pad"
         />
 
-        <TouchableOpacity
-          style={styles.loginButton}
-          onPress={() => router.navigate("/(tabs)")}
-        >
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
       </View>

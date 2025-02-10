@@ -17,6 +17,15 @@ const SignupUser = ({}) => {
   const [location, setLocation] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  const handleSubmit = async () => {
+    // const res = await farmerSignup(phone, fullName, location);
+    // console.log(res);
+    // if (res.status === 200) {
+    //   router.navigate("/(tabs)");
+    // }
+    router.navigate("/(user)");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
@@ -46,6 +55,7 @@ const SignupUser = ({}) => {
         <TextInput
           style={styles.input}
           placeholder="Full Name"
+          placeholderTextColor="rbga(0,0,0,0.3)"
           value={fullName}
           onChangeText={setFullName}
         />
@@ -65,10 +75,7 @@ const SignupUser = ({}) => {
           onChangeText={setLocation}
         />
 
-        <TouchableOpacity
-          style={styles.registerButton}
-          onPress={() => router.navigate("/(tabs)")}
-        >
+        <TouchableOpacity style={styles.registerButton} onPress={handleSubmit}>
           <Text style={styles.registerButtonText}>Register</Text>
         </TouchableOpacity>
 

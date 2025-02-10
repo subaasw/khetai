@@ -36,34 +36,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="camera"
+        name="explore"
         options={{
-          title: "Detect",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="camera.circle.fill" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="sellProduct"
-        options={{
-          title: "",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={40} name="plus.app.fill" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="askAI"
-        options={{
-          title: "Ask AI",
-
+          title: "Explore",
           tabBarIcon: ({ color }) => (
             <IconSymbol
               size={28}
               name="figure.mind.and.body.circle.fill"
               color={color}
             />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="cart"
+        options={{
+          title: "My Cart",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="camera.circle.fill" color={color} />
           ),
         }}
       />

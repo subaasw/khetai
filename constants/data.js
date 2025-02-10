@@ -6,11 +6,16 @@ export const categories = [
   },
   {
     id: 2,
+    name: "Vegetables",
+    icon: "🥔",
+  },
+  {
+    id: 3,
     name: "Grains",
     icon: "🌾",
   },
   {
-    id: 3,
+    id: 4,
     name: "Herbs",
     icon: "🌿",
   },

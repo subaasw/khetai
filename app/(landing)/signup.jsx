@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { farmerSignup } from "@/util/auth";
 
 const Signup = ({}) => {
   const router = useRouter();
@@ -16,6 +17,14 @@ const Signup = ({}) => {
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+
+  const handleSubmit = async () => {
+    const res = await farmerSignup(phone, fullName, location);
+    console.log(res);
+    if (res.status === 200) {
+      router.navigate("/(tabs)");
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -68,10 +77,7 @@ const Signup = ({}) => {
           onChangeText={setLocation}
         />
 
-        <TouchableOpacity
-          style={styles.registerButton}
-          onPress={() => router.navigate("/(tabs)")}
-        >
+        <TouchableOpacity style={styles.registerButton} onPress={handleSubmit}>
           <Text style={styles.registerButtonText}>Register</Text>
         </TouchableOpacity>
 

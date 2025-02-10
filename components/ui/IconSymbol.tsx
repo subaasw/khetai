@@ -16,6 +16,7 @@ const MAPPING = {
   "person.fill": "person",
   "camera.circle.fill": "camera",
   "figure.mind.and.body.circle.fill": "android",
+  "plus.app.fill": "add",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

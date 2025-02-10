@@ -1,10 +1,23 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Linking,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
 const Profile = ({}) => {
   const router = useRouter();
+  const handlePress = () => {
+    const url = "https://forms.gle/r84UvAPNTdktVa9b7";
+    Linking.openURL(url).catch((err) =>
+      console.error("Couldn't load page", err)
+    );
+  };
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -28,55 +41,66 @@ const Profile = ({}) => {
         </View>
         <Text style={styles.name}>Gwen Stacy</Text>
         <Text style={styles.username}>@GwenStacy31</Text>
-        <TouchableOpacity style={styles.editButton}>
+        <TouchableOpacity
+          style={styles.editButton}
+          onPress={() => router.navigate("/(components)/editProfile")}
+        >
           <Text style={styles.editButtonText}>Edit Profile</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Statistics */}
-      <View style={styles.statsContainer}>
-        <Text style={styles.statsTitle}>Statistics</Text>
-        <View style={styles.statsRow}>
-          <View style={styles.statItem}>
-            <Text style={styles.statNumber}>56</Text>
-            <Text style={styles.statLabel}>Finished</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statNumber}>4</Text>
-            <Text style={styles.statLabel}>Unfinished</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statNumber}>14</Text>
-            <Text style={styles.statLabel}>Dropped</Text>
+      <View style={styles.bottomContainer}>
+        {/* Statistics */}
+        <View style={styles.statsContainer}>
+          <Text style={styles.statsTitle}>Statistics</Text>
+          <View style={styles.statsRow}>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>56</Text>
+              <Text style={styles.statLabel}>Finished</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>4</Text>
+              <Text style={styles.statLabel}>Unfinished</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>14</Text>
+              <Text style={styles.statLabel}>Dropped</Text>
+            </View>
           </View>
         </View>
-      </View>
 
-      {/* Menu Items */}
-      <View style={styles.menuContainer}>
-        <TouchableOpacity style={styles.menuItem}>
-          <Ionicons name="language" size={24} color="#333" />
-          <Text style={styles.menuText}>Language</Text>
-          <Ionicons name="chevron-forward" size={24} color="#333" />
-        </TouchableOpacity>
+        {/* Menu Items */}
+        <View style={styles.menuContainer}>
+          <TouchableOpacity style={styles.menuItem}>
+            <Ionicons name="language" size={24} color="#333" />
+            <Text style={styles.menuText}>Language</Text>
+            <Ionicons name="chevron-forward" size={24} color="#333" />
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuItem}>
-          <Ionicons name="notifications-outline" size={24} color="#333" />
-          <Text style={styles.menuText}>Notification</Text>
-          <Ionicons name="chevron-forward" size={24} color="#333" />
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => router.navigate("/(components)/viewNotification")}
+          >
+            <Ionicons name="notifications-outline" size={24} color="#333" />
+            <Text style={styles.menuText}>Notification</Text>
+            <Ionicons name="chevron-forward" size={24} color="#333" />
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuItem}>
-          <Ionicons name="star-outline" size={24} color="#333" />
-          <Text style={styles.menuText}>Rate Us</Text>
-          <Ionicons name="chevron-forward" size={24} color="#333" />
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem} onPress={handlePress}>
+            <Ionicons name="star-outline" size={24} color="#333" />
+            <Text style={styles.menuText}>Rate Us</Text>
+            <Ionicons name="chevron-forward" size={24} color="#333" />
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuItem}>
-          <Ionicons name="log-out-outline" size={24} color="#333" />
-          <Text style={styles.menuText}>Log Out</Text>
-          <Ionicons name="chevron-forward" size={24} color="#333" />
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => router.navigate("/(landing)/splash2")}
+          >
+            <Ionicons name="log-out-outline" size={24} color="#333" />
+            <Text style={styles.menuText}>Log Out</Text>
+            <Ionicons name="chevron-forward" size={24} color="#333" />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -85,7 +109,7 @@ const Profile = ({}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#008847",
   },
   header: {
     flexDirection: "row",
@@ -93,6 +117,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     backgroundColor: "#008847",
+    marginTop: 24,
   },
   headerTitle: {
     color: "white",
@@ -148,6 +173,10 @@ const styles = StyleSheet.create({
   editButtonText: {
     color: "white",
     fontSize: 16,
+  },
+  bottomContainer: {
+    backgroundColor: "white",
+    height: "100%",
   },
   statsContainer: {
     padding: 20,

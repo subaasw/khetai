@@ -45,7 +45,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="recordAudio"
+        name="askAI"
         options={{
           title: "Ask AI",
           tabBarIcon: ({ color }) => (

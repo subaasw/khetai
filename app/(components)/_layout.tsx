@@ -10,10 +10,7 @@ export default function RootLayout() {
     // <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
     <Stack>
       <Stack.Screen name="editProfile" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="notificationToggle"
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="viewNotification" options={{ headerShown: false }} />
       <Stack.Screen name="productDetails" options={{ headerShown: false }} />
     </Stack>
     // <StatusBar style="auto" />

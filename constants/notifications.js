@@ -1,0 +1,42 @@
+export const notifications = [
+  {
+    id: 1,
+    title: "Order Completed",
+    message: "Your order #123456 has been successfully delivered",
+    timestamp: "2024-02-10T10:30:00",
+    hasRead: false,
+    type: "order",
+  },
+  {
+    id: 2,
+    title: "New Message",
+    message: "Farmer John has sent you a message about your order",
+    timestamp: "2024-02-09T15:45:00",
+    hasRead: true,
+    type: "message",
+  },
+  {
+    id: 3,
+    title: "Price Alert",
+    message: "Tomatoes prices have dropped by 20% in your area",
+    timestamp: "2024-02-09T09:20:00",
+    hasRead: false,
+    type: "alert",
+  },
+  {
+    id: 4,
+    title: "Delivery Update",
+    message: "Your order #123457 is out for delivery",
+    timestamp: "2024-02-08T14:15:00",
+    hasRead: true,
+    type: "order",
+  },
+  {
+    id: 5,
+    title: "System Update",
+    message: "New features have been added to the marketplace",
+    timestamp: "2024-02-08T11:00:00",
+    hasRead: false,
+    type: "system",
+  },
+];

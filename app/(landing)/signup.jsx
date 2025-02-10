@@ -46,6 +46,7 @@ const Signup = ({}) => {
         <TextInput
           style={styles.input}
           placeholder="Full Name"
+          placeholderTextColor="rgba(0, 0, 0, 0.3)"
           value={fullName}
           onChangeText={setFullName}
         />
@@ -53,6 +54,7 @@ const Signup = ({}) => {
         <TextInput
           style={styles.input}
           placeholder="Phone"
+          placeholderTextColor="rgba(0, 0, 0, 0.3)"
           value={phone}
           onChangeText={setPhone}
           keyboardType="phone-pad"
@@ -61,6 +63,7 @@ const Signup = ({}) => {
         <TextInput
           style={styles.input}
           placeholder="Location"
+          placeholderTextColor="rgba(0, 0, 0, 0.3)"
           value={location}
           onChangeText={setLocation}
         />

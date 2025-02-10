@@ -49,7 +49,7 @@ const MarketScreen = () => {
       style={styles.productCard}
       onPress={() =>
         router.push({
-          pathname: "/product/[id]",
+          pathname: "/products/[id]",
           params: { id: item.id },
         })
       }
@@ -60,7 +60,7 @@ const MarketScreen = () => {
         {item.subtitle && (
           <Text style={styles.productSubtitle}>{item.subtitle}</Text>
         )}
-        <Text style={styles.productPrice}>₹{item.price}</Text>
+        <Text style={styles.productPrice}>रु{item.price}</Text>
         <View style={styles.ratingContainer}>
           <AntDesign name="star" size={12} color="#FFD700" />
           <Text style={styles.ratingText}>{item.rating}</Text>

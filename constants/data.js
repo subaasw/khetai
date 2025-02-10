@@ -1,0 +1,80 @@
+export const products = [
+  {
+    id: "1",
+    farmerName: "John Smith",
+    farmName: "Green Valley Farm",
+    productName: "Organic Tomatoes",
+    price: 4.99,
+    unit: "per pound",
+    quantity: 100,
+    image:
+      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    rating: 4.5,
+    description: "Fresh, locally grown organic tomatoes",
+    category: "Vegetables",
+    location: "Springfield, IL",
+  },
+  {
+    id: "2",
+    farmerName: "Mary Johnson",
+    farmName: "Sunrise Orchards",
+    productName: "Golden Apples",
+    price: 3.99,
+    unit: "per pound",
+    quantity: 200,
+    image:
+      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    rating: 4.8,
+    description: "Sweet and crispy apples freshly picked",
+    category: "Fruits",
+    location: "Madison, WI",
+  },
+  {
+    id: "3",
+    farmerName: "Robert Wilson",
+    farmName: "Wilson Dairy",
+    productName: "Fresh Milk",
+    price: 5.99,
+    unit: "per gallon",
+    quantity: 50,
+    image:
+      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    rating: 4.7,
+    description: "Organic whole milk from grass-fed cows",
+    category: "Dairy",
+    location: "Dover, DE",
+  },
+];
+
+export const recommendedProducts = [
+  {
+    id: "4",
+    farmerName: "John Smith",
+    farmName: "Green Valley Farm",
+    productName: "Organic Tomatoes",
+    price: 4.99,
+    unit: "per pound",
+    quantity: 100,
+    image:
+      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    rating: 4.5,
+    description: "Fresh, locally grown organic tomatoes",
+    category: "Vegetables",
+    location: "Springfield, IL",
+  },
+  {
+    id: "5",
+    farmerName: "John Smith",
+    farmName: "Green Valley Farm",
+    productName: "Organic Tomatoes",
+    price: 4.99,
+    unit: "per pound",
+    quantity: 100,
+    image:
+      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    rating: 4.5,
+    description: "Fresh, locally grown organic tomatoes",
+    category: "Vegetables",
+    location: "Springfield, IL",
+  },
+];

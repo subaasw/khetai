@@ -7,6 +7,7 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -40,7 +41,7 @@ export default function TabLayout() {
         options={{
           title: "Detect",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="camera.circle.fill" color={color} />
+            <IconSymbol size={28} name="camera.fill" color={color} />
           ),
         }}
       />
@@ -49,7 +50,7 @@ export default function TabLayout() {
         options={{
           title: "",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={40} name="plus.app.fill" color={color} />
+            <IconSymbol size={72} name="plus.circle.fill" color={color} />
           ),
         }}
       />
@@ -59,9 +60,9 @@ export default function TabLayout() {
           title: "Ask AI",
 
           tabBarIcon: ({ color }) => (
-            <IconSymbol
-              size={28}
-              name="figure.mind.and.body.circle.fill"
+            <MaterialCommunityIcons
+              name="robot-happy"
+              size={24}
               color={color}
             />
           ),

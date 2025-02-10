@@ -7,6 +7,7 @@ export async function farmerLogin(phone) {
   });
   return res;
 }
+
 export async function farmerSignup(phone, name, location) {
   const res = await client.post(FARMERS.signup, {
     phone,

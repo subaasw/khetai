@@ -12,6 +12,7 @@ export default function RootLayout() {
       <Stack.Screen name="editProfile" options={{ headerShown: false }} />
       <Stack.Screen name="viewNotification" options={{ headerShown: false }} />
       <Stack.Screen name="productDetails" options={{ headerShown: false }} />
+      <Stack.Screen name="priceListing" options={{ headerShown: false }} />
     </Stack>
     // <StatusBar style="auto" />
     // </ThemeProvider>

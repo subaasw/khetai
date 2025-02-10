@@ -68,9 +68,9 @@ const Profile = ({}) => {
 
         {/* Menu Items */}
         <View style={styles.menuContainer}>
-          <TouchableOpacity style={styles.menuItem}>
-            <Ionicons name="language" size={24} color="#333" />
-            <Text style={styles.menuText}>Language</Text>
+          <TouchableOpacity style={styles.menuItem} onPress={()=> router.navigate('/(components)/priceListing')}>
+            <Ionicons name="list-sharp" size={24} color="#333" />
+            <Text style={styles.menuText}>Live Price Listing</Text>
             <Ionicons name="chevron-forward" size={24} color="#333" />
           </TouchableOpacity>
 

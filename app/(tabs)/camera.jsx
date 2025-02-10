@@ -8,41 +8,40 @@ import {
   View,
   SafeAreaView,
   Image,
+  Alert,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import * as MediaLibrary from "expo-media-library";
 import Slider from "@react-native-community/slider";
+import {client} from '@/util/network'; // Update this path
 
 export default function CameraFunction() {
-  const [cameraPermission, setCameraPermission] = useState(); //State variable for camera permission
-  const [mediaLibraryPermission, setMediaLibraryPermission] = useState(); //State variable for media library permission
-  const [micPermission, setMicPermission] = useState(); //// state variable for microphone permission
-  const [cameraMode, setCameraMode] = useState("picture"); //State variable for picture or video. By default it will be for picture
+  const [cameraPermission, setCameraPermission] = useState();
+  const [mediaLibraryPermission, setMediaLibraryPermission] = useState();
+  const [micPermission, setMicPermission] = useState();
+  const [cameraMode, setCameraMode] = useState("picture");
   const [facing, setFacing] = useState("back");
-  const [photo, setPhoto] = useState(); //After picture is taken this state will be updated with the picture
-  const [video, setVideo] = useState(); //After video is recorded this state will be updated
-  const [flashMode, setFlashMode] = useState("on"); //Camera Flash will be ON by default
-  const [recording, setRecording] = useState(false); //State will be true when the camera will be recording
-  const [zoom, setZoom] = useState(0); //State to control the digital zoom
-  let cameraRef = useRef(); //Creates a ref object and assigns it to the variable cameraRef.
+  const [photo, setPhoto] = useState();
+  const [video, setVideo] = useState();
+  const [flashMode, setFlashMode] = useState("on");
+  const [recording, setRecording] = useState(false);
+  const [zoom, setZoom] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  let cameraRef = useRef();
   const navigation = useNavigation();
 
-  //When the screen is rendered initially the use effect hook will run and check if permission is granted to the app to access the Camera, Microphone and Media Library.
   useEffect(() => {
     (async () => {
       const cameraPermission = await Camera.requestCameraPermissionsAsync();
-      const mediaLibraryPermission =
-        await MediaLibrary.requestPermissionsAsync();
-      const microphonePermission =
-        await Camera.requestMicrophonePermissionsAsync();
+      const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
+      const microphonePermission = await Camera.requestMicrophonePermissionsAsync();
       setCameraPermission(cameraPermission.status === "granted");
       setMediaLibraryPermission(mediaLibraryPermission.status === "granted");
       setMicPermission(microphonePermission.status === "granted");
     })();
   }, []);
 
-  //If permissions are not granted app will have to wait for permissions
   if (
     cameraPermission === undefined ||
     mediaLibraryPermission === undefined ||
@@ -50,44 +49,63 @@ export default function CameraFunction() {
   ) {
     return <Text>Request Permissions....</Text>;
   } else if (!cameraPermission) {
-    return (
-      <Text>
-        Permission for camera not granted. Please change this in settings
-      </Text>
-    );
+    return <Text>Permission for camera not granted. Please change this in settings</Text>;
   }
 
-  //Function to toggle between back and front camera
   function toggleCameraFacing() {
     setFacing((current) => (current === "back" ? "front" : "back"));
   }
 
-  //Function to toggle flash on or off
   function toggleFlash() {
     setFlashMode((current) => (current === "on" ? "off" : "on"));
   }
 
-  //Function to capture picture
   let takePic = async () => {
-    //Declares takePic as an asynchronous function using the async keyword.
     let options = {
-      quality: 1, //Specifies the quality of the captured image. A value of 1 indicates maximum quality, whereas lower values reduce quality (and file size).
-      base64: true, //Includes the image's Base64 representation in the returned object. This is useful for embedding the image directly in data URIs or for immediate upload to servers.
-      exif: false, //Disables the inclusion of EXIF metadata in the image (e.g., location, device info). Setting this to true would include such metadata.
+      quality: 1,
+      base64: true,
+      exif: false,
     };
-
-    let newPhoto = await cameraRef.current.takePictureAsync(options); //Refers to the camera instance (set using a ref in React). This is used to call methods on the camera.
-    
-    //Captures an image with the specified options and returns a promise that resolves to an object containing: URI and Base64 string and/or EXIF data, based on the provided options.
-    setPhoto(newPhoto); //Update photo state with the new photo object
+    let newPhoto = await cameraRef.current.takePictureAsync(options);
+    setPhoto(newPhoto);
   };
 
-  //After the picture is captured it will be displayed to the user and the user will also be provided the option to save or discard the image
   if (photo) {
-    let savePhoto = () => {
-      MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
+    const savePhoto = async () => {
+      try {
+        setIsLoading(true);
+        await MediaLibrary.saveToLibraryAsync(photo.uri);
+
+        const formData = new FormData();
+        formData.append('file', {
+          uri: photo.uri,
+          type: 'image/jpeg',
+          name: 'photo.jpg'
+        });
+
+        const response = await client.post('/diseases-detect', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        
+        Alert.alert(
+          "Analysis Complete",
+          `Disease Detection Results: ${JSON.stringify(response.data.prediction)}`,
+          [{ text: "OK" }]
+        );
+
         setPhoto(undefined);
-      });
+      } catch (error) {
+        console.error('Error:', error);
+        Alert.alert(
+          "Error",
+          error.response?.data?.message || "There was an error processing the image. Please try again.",
+          [{ text: "OK" }]
+        );
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     return (
@@ -95,13 +113,22 @@ export default function CameraFunction() {
         <Image style={styles.preview} source={{ uri: photo.uri }} />
         <View style={styles.btnContainer}>
           {mediaLibraryPermission ? (
-            <TouchableOpacity style={styles.btn} onPress={savePhoto}>
-              <Ionicons name="save-outline" size={30} color="black" />
+            <TouchableOpacity 
+              style={[styles.btn, isLoading && styles.btnDisabled]} 
+              onPress={savePhoto}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <Text style={styles.loadingText}>Processing...</Text>
+              ) : (
+                <Ionicons name="save-outline" size={30} color="black" />
+              )}
             </TouchableOpacity>
           ) : undefined}
           <TouchableOpacity
             style={styles.btn}
             onPress={() => setPhoto(undefined)}
+            disabled={isLoading}
           >
             <Ionicons name="trash-outline" size={30} color="black" />
           </TouchableOpacity>
@@ -110,33 +137,28 @@ export default function CameraFunction() {
     );
   }
 
-  //Video Recorder
   async function recordVideo() {
-    setRecording(true); //Updates the recording state to true. This will also toggle record button to stop button.
+    setRecording(true);
     cameraRef.current
       .recordAsync({
-        //cameraRef is a useRef hook pointing to the camera component. It provides access to the camera's methods, such as recordAsync. Starts recording a video and returns a Promise that resolves with the recorded video’s details.
-        maxDuration: 30, //Limits the recording duration to 30 seconds. After 30 seconds, the recording automatically stops, and the Promise resolves.
+        maxDuration: 30,
       })
       .then((newVideo) => {
-        //The result of this Promise is an object (newVideo) containing information about the recorded video, such as the file's URI and other metadata. This callback runs when the recording completes successfully.
-        setVideo(newVideo); // Stores the recorded video details in the state, which can later be used for playback, uploading, or other actions.
+        setVideo(newVideo);
         setRecording(false);
       });
-    console.log(video.uri);
   }
 
   function stopRecording() {
     setRecording(false);
     cameraRef.current.stopRecording();
-    console.log("Recording stopped");
   }
 
   if (video) {
     let uri = video.uri;
     navigation.navigate("Video", { uri });
   }
-  //We will design the camera UI first
+
   return (
     <View style={styles.container}>
       <CameraView
@@ -231,7 +253,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    // marginTop: "50%",
   },
   button: {
     flex: 1,
@@ -248,6 +269,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 10,
     elevation: 5,
+  },
+  btnDisabled: {
+    opacity: 0.5,
+  },
+  loadingText: {
+    color: 'black',
+    fontSize: 14,
   },
   imageContainer: {
     height: "90%",

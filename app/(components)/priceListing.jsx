@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: DARK_GREEN,
+    backgroundColor: "#008847",
     paddingTop: Platform.OS === 'ios' ? 44 : StatusBar.currentHeight + 10,
     paddingBottom: 16,
     paddingHorizontal: 16,
@@ -171,7 +171,8 @@ const styles = StyleSheet.create({
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: LIGHT_GREEN,
+    backgroundColor: "#008847",
+    
     paddingVertical: 12,
     paddingHorizontal: 16,
   },

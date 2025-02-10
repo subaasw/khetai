@@ -8,6 +8,7 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Picker } from "@react-native-picker/picker";
@@ -33,16 +34,15 @@ const SellProduct = () => {
   };
 
   const handleSubmit = () => {
-    // Handle form submission
-    const productData = {
-      productName,
-      description,
-      price,
-      image,
-      category,
-    };
-    console.log(productData);
+    
+    
+    alert("Product Added Sucessfully")
+    setProductName("")
+    setDescription("")
+    setPrice("")
+    setImage(null)
   };
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

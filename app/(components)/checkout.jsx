@@ -76,8 +76,8 @@ const CheckoutPage = () => {
           style={styles.backButton}
         >
           <Ionicons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
         <Text style={styles.headerTitle}>Checkout</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Delivery Address Section */}
@@ -200,7 +200,8 @@ const CheckoutPage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop:24,
+    // flex: 1,
     backgroundColor: "#f4f4f4",
   },
   backButton: {
@@ -209,7 +210,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#0C7A3D",
     padding: 15,
-    alignItems: "center",
+    // alignItems: "center",
   },
   headerTitle: {
     color: "white",

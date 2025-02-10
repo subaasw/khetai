@@ -84,10 +84,6 @@ const Signup = ({}) => {
             </View>
             <Text style={styles.rememberText}>Remember Me</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Text style={styles.forgotText}>Forgot password?</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>

@@ -1,24 +1,14 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
-const Profile = ({ navigation }) => {
+const Profile = ({}) => {
   const router = useRouter();
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
         <Text style={styles.headerTitle}>Profile</Text>
         <TouchableOpacity>
           <Ionicons name="notifications-outline" size={24} color="white" />
@@ -29,7 +19,7 @@ const Profile = ({ navigation }) => {
       <View style={styles.profileContainer}>
         <View style={styles.profileImageContainer}>
           <Image
-            source={{ uri: "your-profile-image-url" }}
+            source={require("@/assets/images/Man.png")}
             style={styles.profileImage}
           />
           <View style={styles.cameraIconContainer}>
@@ -72,9 +62,7 @@ const Profile = ({ navigation }) => {
 
         <TouchableOpacity style={styles.menuItem}>
           <Ionicons name="notifications-outline" size={24} color="#333" />
-          <Text style={styles.menuText} onPress={() => router.navigate("/")}>
-            Notification
-          </Text>
+          <Text style={styles.menuText}>Notification</Text>
           <Ionicons name="chevron-forward" size={24} color="#333" />
         </TouchableOpacity>
 
@@ -90,7 +78,7 @@ const Profile = ({ navigation }) => {
           <Ionicons name="chevron-forward" size={24} color="#333" />
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -1,80 +1,83 @@
-export const products = [
+export const categories = [
   {
-    id: "1",
-    farmerName: "John Smith",
-    farmName: "Green Valley Farm",
-    productName: "Organic Tomatoes",
-    price: 4.99,
-    unit: "per pound",
-    quantity: 100,
-    image:
-      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    rating: 4.5,
-    description: "Fresh, locally grown organic tomatoes",
-    category: "Vegetables",
-    location: "Springfield, IL",
+    id: 1,
+    name: "Fruits",
+    icon: "🍎",
   },
   {
-    id: "2",
-    farmerName: "Mary Johnson",
-    farmName: "Sunrise Orchards",
-    productName: "Golden Apples",
-    price: 3.99,
-    unit: "per pound",
-    quantity: 200,
-    image:
-      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    rating: 4.8,
-    description: "Sweet and crispy apples freshly picked",
-    category: "Fruits",
-    location: "Madison, WI",
+    id: 2,
+    name: "Grains",
+    icon: "🌾",
   },
   {
-    id: "3",
-    farmerName: "Robert Wilson",
-    farmName: "Wilson Dairy",
-    productName: "Fresh Milk",
-    price: 5.99,
-    unit: "per gallon",
-    quantity: 50,
-    image:
-      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    rating: 4.7,
-    description: "Organic whole milk from grass-fed cows",
-    category: "Dairy",
-    location: "Dover, DE",
+    id: 3,
+    name: "Herbs",
+    icon: "🌿",
   },
 ];
 
-export const recommendedProducts = [
+export const products = [
   {
-    id: "4",
-    farmerName: "John Smith",
-    farmName: "Green Valley Farm",
-    productName: "Organic Tomatoes",
-    price: 4.99,
-    unit: "per pound",
-    quantity: 100,
-    image:
-      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    id: 1,
+    name: "Apples",
+    subtitle: "Shimla",
+    price: 500,
     rating: 4.5,
-    description: "Fresh, locally grown organic tomatoes",
-    category: "Vegetables",
-    location: "Springfield, IL",
+    reviews: 122,
+    image: "https://en.setopati.com/wp-content/uploads/2017/11/apples.jpg",
+    category: "Fruits",
   },
   {
-    id: "5",
-    farmerName: "John Smith",
-    farmName: "Green Valley Farm",
-    productName: "Organic Tomatoes",
-    price: 4.99,
-    unit: "per pound",
-    quantity: 100,
+    id: 2,
+    name: "Tulsi",
+    price: 100,
+    rating: 4.9,
+    reviews: 324,
     image:
-      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    rating: 4.5,
-    description: "Fresh, locally grown organic tomatoes",
+      "https://th.bing.com/th/id/OIP.vMI-VDGdYdjmK2JmNLzx8AHaFj?w=1024&h=768&rs=1&pid=ImgDetMain",
+    category: "Herbs",
+  },
+  {
+    id: 3,
+    name: "Aeparagus",
+    price: 70,
+    rating: 4.3,
+    reviews: 550,
+    image:
+      "https://th.bing.com/th/id/OIP.vMI-VDGdYdjmK2JmNLzx8AHaFj?w=1024&h=768&rs=1&pid=ImgDetMain",
+    category: "Dairy",
+  },
+  {
+    id: 4,
+    name: "Tomatoes",
+    price: 50,
+    rating: 4.7,
+    reviews: 874,
+    image:
+      "https://4.bp.blogspot.com/-_slEGnD8epU/T2opItaZm6I/AAAAAAAAOWM/jA94fol20Vo/s1600/DSC00927.JPG",
     category: "Vegetables",
-    location: "Springfield, IL",
+  },
+];
+
+export const recommended = [
+  {
+    id: 5,
+    name: "Organic Rice",
+    price: 150,
+    rating: 4.8,
+    reviews: 235,
+    image:
+      "https://4.bp.blogspot.com/-_slEGnD8epU/T2opItaZm6I/AAAAAAAAOWM/jA94fol20Vo/s1600/DSC00927.JPG",
+    category: "Grains",
+  },
+  {
+    id: 6,
+    name: "Fresh Mint",
+    price: 30,
+    rating: 4.6,
+    reviews: 189,
+    image:
+      "https://4.bp.blogspot.com/-_slEGnD8epU/T2opItaZm6I/AAAAAAAAOWM/jA94fol20Vo/s1600/DSC00927.JPG",
+    category: "Herbs",
   },
 ];

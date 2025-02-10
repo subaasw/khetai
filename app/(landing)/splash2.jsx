@@ -5,14 +5,13 @@ import {
   TouchableOpacity,
   ImageBackground,
   StyleSheet,
-  SafeAreaView,
 } from "react-native";
 import { useRouter } from "expo-router";
 
 const Splash2 = ({}) => {
   const router = useRouter();
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ImageBackground
         source={require("@/assets/images/login/Splash2.jpg")}
         style={styles.backgroundImage}
@@ -39,13 +38,14 @@ const Splash2 = ({}) => {
           </View>
         </View>
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
   },
   backgroundImage: {
     flex: 1,
@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
     justifyContent: "center",
     padding: 20,
+    marginTop: "65%",
   },
   whiteCard: {
     padding: 24,

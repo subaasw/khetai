@@ -58,6 +58,20 @@ export default function AskAIScreen() {
     };
   }, []);
 
+  const openAIChat = async (message) => {
+    const res = await client.post("/chat", {
+      message: message,
+    });
+
+    const botResponse = {
+      text: res.data.text || "Sorry, I couldn't process that.",
+      isUser: false,
+      timestamp: new Date().toISOString(),
+    };
+
+    return botResponse;
+  } 
+
   const handleChatMessage = async () => {
     if (!inputText.trim()) return;
 
@@ -72,17 +86,9 @@ export default function AskAIScreen() {
     setIsLoading(true);
 
     try {
-      const res = await client.post("/chat", {
-        message: inputText,
-      });
+      const res = await openAIChat(inputText);
 
-      const botResponse = {
-        text: res.data.text || "Sorry, I couldn't process that.",
-        isUser: false,
-        timestamp: new Date().toISOString(),
-      };
-
-      setMessages((prev) => [...prev, botResponse]);
+      setMessages((prev) => [...prev, res]);
     } catch (error) {
       console.error("Chat error:", error);
       Alert.alert("Error", "Failed to get response from the AI");
@@ -164,14 +170,15 @@ export default function AskAIScreen() {
             timestamp: new Date().toISOString(),
           }]);
 
-          // Add the AI response
-          if (response.data.text) {
-            setMessages(prev => [...prev, {
-              text: response.data.text,
-              isUser: false,
-              timestamp: new Date().toISOString(),
-            }]);
-          }
+          const res = await openAIChat(response.data.text);
+
+        
+
+          // const audioUri = URL.createObjectURL(audioBlob);
+          // await playSound(audioUri);
+
+          setMessages((prev) => [...prev, res]);
+
         }
       } catch (error) {
         console.error("Error sending audio:", error);
@@ -276,7 +283,7 @@ export default function AskAIScreen() {
 
           {isLoading && (
             <View style={styles.loadingContainer}>
-              <Text style={styles.loadingText}>AI is typing...</Text>
+              <Text style={styles.loadingText}>KhetAI is thinking...</Text>
             </View>
           )}
         </ScrollView>
